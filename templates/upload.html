@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload Grades</title>
+</head>
+
+<body>
+
+    <h1>Upload Grades CSV</h1>
+
+    <p>
+        CSV must contain these columns:
+    </p>
+
+    <pre>
+student_email,course_code,score,date
+    </pre>
+
+    <form
+        action="{{ url_for('upload.upload_csv') }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <input
+            type="file"
+            name="file"
+            accept=".csv"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Upload CSV
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('home') }}">
+        Back to Home
+    </a>
+
+</body>
+
+</html>

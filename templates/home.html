@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Analytics</title>
+</head>
+
+<body>
+
+    <h1>Student Performance Analytics System</h1>
+
+    <p>
+        Welcome to the Student Performance Analytics System.
+    </p>
+
+    <hr>
+
+    <h2>Management</h2>
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('student_web.students_page') }}">
+                Manage Students
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('course_web.courses_page') }}">
+                Manage Courses
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('grade_web.grades_page') }}">
+                Manage Grades
+            </a>
+        </li>
+
+    </ul>
+
+    <hr>
+
+    <h2>Analytics</h2>
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('analytics.analytics_page') }}">
+                Analytics Dashboard
+            </a>
+        </li>
+
+    </ul>
+
+    <hr>
+
+    <h2>Data Import</h2>
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('upload.upload_page') }}">
+                Upload Grades CSV
+            </a>
+        </li>
+
+    </ul>
+
+    <hr>
+
+    <h2>Reports</h2>
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('reports.grades_csv') }}">
+                Download Grades CSV Report
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('reports.grades_excel') }}">
+                Download Grades Excel Report
+            </a>
+        </li>
+
+    </ul>
+
+</body>
+
+</html>

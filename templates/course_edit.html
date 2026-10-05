@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Course</title>
+</head>
+
+<body>
+
+    <h1>Edit Course</h1>
+
+    <form action="/courses/{{ course.id }}" method="POST">
+
+        <input
+            type="hidden"
+            name="_method"
+            value="PUT"
+        >
+
+        <label>Course Name:</label>
+        <br>
+
+        <input
+            type="text"
+            name="name"
+            value="{{ course.name }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Course Code:</label>
+        <br>
+
+        <input
+            type="text"
+            name="code"
+            value="{{ course.code }}"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Update Course
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/courses/{{ course.id }}">
+        Cancel
+    </a>
+
+</body>
+</html>

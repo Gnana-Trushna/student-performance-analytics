@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Analytics Dashboard</title>
+
+</head>
+
+<body>
+
+    <h1>Student Performance Analytics</h1>
+
+    <a href="{{ url_for('home') }}">
+        Home
+    </a>
+
+    |
+
+    <a href="{{ url_for('grade_web.grades_page') }}">
+        Grades
+    </a>
+
+    <hr>
+
+    {% if not has_data %}
+
+        <h2>No analytics data available</h2>
+
+        <p>
+            Please add some grades first.
+        </p>
+
+    {% else %}
+
+        <!-- ========================= -->
+        <!-- FILTERS -->
+        <!-- ========================= -->
+
+        <h2>Filters</h2>
+
+        <form
+            method="GET"
+            action="{{ url_for('analytics.analytics_page') }}"
+        >
+
+            <label>
+                Student:
+            </label>
+
+            <input
+                type="text"
+                name="student"
+                placeholder="Student name"
+                value="{{ student_filter }}"
+            >
+
+            <label>
+                Course:
+            </label>
+
+            <input
+                type="text"
+                name="course"
+                placeholder="Course name"
+                value="{{ course_filter }}"
+            >
+
+            <button type="submit">
+                Apply Filter
+            </button>
+
+            <a href="{{ url_for('analytics.analytics_page') }}">
+                Clear
+            </a>
+
+        </form>
+
+        <hr>
+
+        <!-- ========================= -->
+        <!-- OVERALL STATISTICS -->
+        <!-- ========================= -->
+
+        <h2>Overall Statistics</h2>
+
+        <table border="1" cellpadding="8">
+
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+
+            <tr>
+                <td>Mean</td>
+                <td>{{ overall_mean }}</td>
+            </tr>
+
+            <tr>
+                <td>Median</td>
+                <td>{{ overall_median }}</td>
+            </tr>
+
+            <tr>
+                <td>Standard Deviation</td>
+                <td>{{ overall_std }}</td>
+            </tr>
+
+        </table>
+
+        <hr>
+
+        <!-- ========================= -->
+        <!-- COURSE AVERAGES -->
+        <!-- ========================= -->
+
+        <h2>Average Score by Course</h2>
+
+        <table border="1" cellpadding="8">
+
+            <tr>
+
+                <th>
+                    Course
+                </th>
+
+                <th>
+                    Average Score
+                </th>
+
+            </tr>
+
+            {% for course in course_average %}
+
+            <tr>
+
+                <td>
+                    {{ course.course_name }}
+                </td>
+
+                <td>
+                    {{ course.average_score }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <hr>
+
+        <!-- ========================= -->
+        <!-- STUDENT RANKING -->
+        <!-- ========================= -->
+
+        <h2>Student Ranking</h2>
+
+        <table border="1" cellpadding="8">
+
+            <tr>
+
+                <th>
+                    Rank
+                </th>
+
+                <th>
+                    Student
+                </th>
+
+                <th>
+                    Average Score
+                </th>
+
+            </tr>
+
+            {% for student in student_ranking %}
+
+            <tr>
+
+                <td>
+                    {{ student.rank }}
+                </td>
+
+                <td>
+                    {{ student.student_name }}
+                </td>
+
+                <td>
+                    {{ student.average_score }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <hr>
+
+<h2>Download Reports</h2>
+
+<p>
+    <a href="{{ url_for('reports.grades_csv') }}">
+        Download CSV Report
+    </a>
+</p>
+
+<p>
+    <a href="{{ url_for('reports.grades_excel') }}">
+        Download Excel Report
+    </a>
+</p>
+
+<hr>
+
+        <hr>
+
+        <!-- ========================= -->
+        <!-- GRADE DATA -->
+        <!-- ========================= -->
+
+        <h2>Grade Records</h2>
+
+        <table border="1" cellpadding="8">
+
+            <tr>
+
+                <th>
+                    Student
+                </th>
+
+                <th>
+                    Course
+                </th>
+
+                <th>
+                    Score
+                </th>
+
+                <th>
+                    Date
+                </th>
+
+            </tr>
+
+            {% for grade in grade_records %}
+
+            <tr>
+
+                <td>
+                    {{ grade.student_name }}
+                </td>
+
+                <td>
+                    {{ grade.course_name }}
+                </td>
+
+                <td>
+                    {{ grade.score }}
+                </td>
+
+                <td>
+                    {{ grade.date }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    {% endif %}
+
+</body>
+
+</html>

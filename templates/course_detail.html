@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Details</title>
+</head>
+
+<body>
+
+    <h1>Course Details</h1>
+
+    <p>
+        <strong>ID:</strong>
+        {{ course.id }}
+    </p>
+
+    <p>
+        <strong>Course Name:</strong>
+        {{ course.name }}
+    </p>
+
+    <p>
+        <strong>Course Code:</strong>
+        {{ course.code }}
+    </p>
+
+    <br>
+
+    <a href="/courses/{{ course.id }}/edit">
+        Edit Course
+    </a>
+
+    <br><br>
+
+    <a href="/courses">
+        Back to Courses
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+</head>
+
+<body>
+
+    <h1>Add New Student</h1>
+
+    <form action="/students" method="POST">
+
+        <label>Name:</label>
+        <br>
+
+        <input
+            type="text"
+            name="name"
+            required
+        >
+
+        <br><br>
+
+        <label>Email:</label>
+        <br>
+
+        <input
+            type="email"
+            name="email"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Add Student
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/students">
+        Back to Students
+    </a>
+
+</body>
+</html>

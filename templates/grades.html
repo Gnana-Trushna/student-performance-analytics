@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grades</title>
+</head>
+<body>
+
+    <h1>Grades</h1>
+
+    <a href="{{ url_for('grade_web.new_grade_page') }}">
+        Add New Grade
+    </a>
+
+    <br><br>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for grade in grades %}
+            <tr>
+                <td>{{ grade.id }}</td>
+                <td>{{ grade.student.name }}</td>
+                <td>{{ grade.course.name }}</td>
+                <td>{{ grade.score }}</td>
+                <td>{{ grade.date }}</td>
+
+                <td>
+                    <a href="{{ url_for('grade_web.grade_detail', grade_id=grade.id) }}">
+                        View
+                    </a>
+
+                    |
+
+                    <a href="{{ url_for('grade_web.edit_grade_page', grade_id=grade.id) }}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <form
+                        action="{{ url_for('grade_web.delete_grade', grade_id=grade.id) }}"
+                        method="POST"
+                        style="display:inline;"
+                        onsubmit="return confirm('Are you sure you want to delete this grade?');"
+                    >
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td colspan="6">No grades found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
