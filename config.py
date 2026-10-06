@@ -3,7 +3,7 @@ from sqlalchemy.engine import URL
 
 class Config:
     DB_USERNAME = "root"
-    DB_PASSWORD = "SECRET"
+    DB_PASSWORD = "G.Trushna@02"
     DB_HOST = "localhost"
     DB_PORT = 3306
     DB_NAME = "student_performance_db"

@@ -22,14 +22,15 @@ from routes.grade_routes import grade_bp
 # Import Web route blueprints
 from routes.student_web_routes import student_web_bp
 from routes.course_web_routes import course_web_bp
-
 from routes.grade_web_routes import grade_web_bp
-
 from routes.analytics_routes import analytics_bp
-
 from routes.report_routes import report_bp
-
 from routes.upload_routes import upload_bp
+
+# Import Web Authentication
+from routes.web_auth import web_auth_bp
+
+
 # ============================================================
 # METHOD OVERRIDE MIDDLEWARE
 # ============================================================
@@ -95,6 +96,9 @@ app.wsgi_app = MethodOverrideMiddleware(app.wsgi_app)
 
 app.config.from_object(Config)
 
+# Secret key for Flask web sessions
+app.secret_key = "student-performance-secret-key"
+
 
 # ============================================================
 # CONNECT SQLALCHEMY TO FLASK
@@ -126,7 +130,6 @@ app.register_blueprint(grade_bp)
 
 app.register_blueprint(student_web_bp)
 app.register_blueprint(course_web_bp)
-
 app.register_blueprint(grade_web_bp)
 
 app.register_blueprint(analytics_bp)
@@ -134,6 +137,11 @@ app.register_blueprint(analytics_bp)
 app.register_blueprint(report_bp)
 
 app.register_blueprint(upload_bp)
+
+# Web Login / Logout
+app.register_blueprint(web_auth_bp)
+
+
 # ============================================================
 # HOME ROUTE
 # ============================================================
@@ -141,6 +149,7 @@ app.register_blueprint(upload_bp)
 @app.route("/")
 def home():
     return render_template("home.html")
+
 
 # ============================================================
 # TEST DATABASE CONNECTION
@@ -196,3 +205,4 @@ def create_tables():
 if __name__ == "__main__":
 
     app.run(debug=True)
+
